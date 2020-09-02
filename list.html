@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="static/css/layui.css" media="all">
+    <link rel="stylesheet" href="style.css">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<div class="head_logo_ul">
+    <ul>
+        <li class="unit_name_culture"> <div class="unit_name "><a href="#"> 河南省成人高等教育院校专业信息库 </a><span class="module_name ">  <a href="#" title="">  </a></span><span class="controller_name ">  <a href="#" title=""> 2020年  </a></span> </div><span class="unit_culture  "> 全面分析2020年河南省内开展成人高招的院校及专业，便于分类查询，科学指导，统筹安排。 </span> </li>
+    </ul>
+</div>
+
+<div class="demoTable" style="padding-top: 30px;">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">学校名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="school_name" id="school_name" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">专业名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="major_name" id="major_name" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">科类</label>
+            <div class="layui-input-inline">
+                <input type="tel" name="ke_lei" id="ke_lei" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form layui-inline">
+            <label class="layui-form-label">层次</label>
+            <div class="layui-input-block">
+                <select name="ceng_ci" id="ceng_ci" lay-filter="ceng_ci">
+                    <option value="" selected="请选择"></option>
+                    <option value="高起专">高起专</option>
+                    <option value="专升本">专升本</option>
+                    <option value="高起本">高起本</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="layui-btn" data-type="reload">搜索</button>
+        <button id="resetForm" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+
+
+</div>
+
+<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
+
+
+<script src="static/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //方法级渲染
+        table.render({
+            elem: '#LAY_table_user'
+            , url: 'articleList.php'
+            , cols: [[
+                {field: 'school_no', title: '学校代码', sort: true},
+                {field: 'school_name', title: '学校名称'},
+                {field: 'school_tel', title: '学校电话', sort: true},
+                {field: 'major_no', title: '专业代码'},
+                {field: 'major_name', title: '专业名称'},
+                {field: 'xue_zhi', title: '学制', sort: true},
+                {field: 'xue_xi_xing_shi', title: '学习形式', sort: true},
+                {field: 'ke_lei', title: '科类'},
+                {field: 'ceng_ci', title: '层次'},
+                {field: 'plan_number', title: '计划人数', sort: true},
+                {field: 'remark', width: 135, title: '备注', sort: true}
+            ]]
+            , id: 'testReload'
+            , page: true
+            , height: 310
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        key: {
+                            id: demoReload.val()
+                        },
+
+                        "school_name": $("#school_name").val(),
+                        "major_name": $("#major_name").val(),
+                        "ke_lei": $("#ke_lei").val(),
+                        "ceng_ci": $("#ceng_ci").val(),
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        $("#resetForm").click(function () {
+            $("#school_name").val("");
+            $("#major_name").val("");
+            $("#ke_lei").val("");
+            $('#ceng_ci option:first').prop('selected', 'selected');
+        });
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>
