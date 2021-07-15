@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Layui</title>
+    <title>河南省成人高等教育院校及专业数据库</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,7 +14,11 @@
 
 <div class="head_logo_ul">
     <ul>
-        <li class="unit_name_culture"> <div class="unit_name "><a href="#"> 河南省成人高等教育院校专业信息库 </a><span class="module_name ">  <a href="#" title="">  </a></span><span class="controller_name ">  <a href="#" title=""> 2020年  </a></span> </div><span class="unit_culture  "> 全面分析2020年河南省内开展成人高招的院校及专业，便于分类查询，科学指导，统筹安排。 </span> </li>
+        <li class="unit_name_culture">
+            <div class="unit_name "><a href="#"> 河南省成人高等教育院校及专业数据库</a><span class="module_name ">  <a href="#"
+                                                                                                      title="">  </a></span>
+                <span class="unit_culture "> 招生院校和专业以省教育厅和省招办公布的目录为准 </span>
+        </li>
     </ul>
 </div>
 
@@ -76,21 +80,18 @@
             elem: '#LAY_table_user'
             , url: 'articleList.php'
             , cols: [[
-                {field: 'school_no', title: '学校代码', sort: true},
-                {field: 'school_name', title: '学校名称'},
-                {field: 'school_tel', title: '学校电话', sort: true},
-                {field: 'major_no', title: '专业代码'},
-                {field: 'major_name', title: '专业名称'},
-                {field: 'xue_zhi', title: '学制', sort: true},
-                {field: 'xue_xi_xing_shi', title: '学习形式', sort: true},
-                {field: 'ke_lei', title: '科类'},
-                {field: 'ceng_ci', title: '层次'},
-                {field: 'plan_number', title: '计划人数', sort: true},
-                {field: 'remark', width: 135, title: '备注', sort: true}
+                {field: 'school_no', title: '学校代码', sort: true,width: 100},
+                {field: 'school_name', title: '学校名称',width: 160},
+                {field: 'ceng_ci', title: '层次', width: 100},
+                {field: 'major_name', title: '专业名称',width: 160},
+                {field: 'ke_lei', title: '科类',width: 100},
+                {field: 'xue_zhi', title: '学制', sort: true,width: 75},
+                {field: 'major_no', title: '专业代码',width: 120},
+                {field: 'xue_xi_xing_shi', title: '学习形式', sort: true,width: 100},
+                {field: 'remark', title: '备注', sort: true}
             ]]
             , id: 'testReload'
             , page: true
-            , height: 310
         });
 
         var $ = layui.$, active = {
