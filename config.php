@@ -1,6 +1,6 @@
 <?php
-	$servername = "212.64.74.78";
+	$servername = "39.106.226.220";
 	$username = "root";
-	$password = "1q@w3E4r";
-	$port = "443";
+	$password = "1994220pxc";
+	$port = "3306";
 ?>  
